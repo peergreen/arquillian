@@ -189,6 +189,9 @@ public class PeergreenEmbeddedContainer implements DeployableContainer<Peergreen
         } catch (MalformedObjectNameException | IOException e) {
             throw new LifecycleException("Unable to get deployment MBean", e);
         }
+        if (instances == null || instances.size() == 0) {
+            throw new LifecycleException("Unable to find the Deployment MBean in the MBean server");
+        }
         deploymentMBean = instances.iterator().next().getObjectName();
 
     }
