@@ -147,19 +147,10 @@ public class PeergreenEmbeddedContainer implements DeployableContainer<Peergreen
     @Override
     public void start() throws LifecycleException {
 
-
         try {
             framework.start();
         } catch (BundleException e) {
             throw new LifecycleException("Cannot start the peergreen server", e);
-        }
-
-        //Needs to wait for stability in the kernel
-        //FIXME: remove these wait when kernel will be updated
-        try {
-            Thread.sleep(9000L);
-        } catch (InterruptedException e) {
-            throw new LifecycleException("Cannot wait for stability", e);
         }
 
         bundleContext = framework.getBundleContext();
